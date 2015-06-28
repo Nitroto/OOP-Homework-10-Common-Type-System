@@ -1,0 +1,87 @@
+﻿Describe the differences between value and reference types. Answer the following questions:
+•	Which .NET data types are value types? Which types are reference types?
+
+The value types consist of two main categories:
+	Structs
+	Enumerations
+Structs fall into these categories:
+	Numeric types
+		Integral types
+		Floating-point types
+		decimal
+bool
+User defined structs.
+
+Variables of reference types store references to their data (objects).
+The following keywords are used to declare reference types:
+	class
+	interface
+	delegate
+C# also provides the following built-in reference types:
+	dynamic
+	object
+	string
+	array
+
+•	How do value and reference types differ when assigned to a variable? 
+
+ Variables of reference types store references to their data (objects),
+ while variables of value types directly contain their data. With reference types, 
+ two variables can reference the same object; therefore, operations on one variable can
+ affect the object referenced by the other variable. With value types, each variable 
+ has its own copy of the data, and it is not possible for operations on one variable 
+ to affect the other (except in the case of ref and out parameter variables.
+
+•	How do value and reference types behave when passed as argument to a method?
+
+By default, parameters are value parameters. This means that a new storage location 
+is created for the variable in the function member declaration, and it starts off 
+with the value that you specify in the function member invocation. If you change that 
+value, that doesn't alter any variables involved in the invocation.
+
+Reference parameters don't pass the values of the variables used in the function member 
+invocation - they use the variables themselves. Rather than creating a new storage location 
+for the variable in the function member declaration, the same storage location is used, so 
+the value of the variable in the function member and the value of the reference parameter 
+will always be the same. Reference parameters need the ref modifier as part of both the declaration 
+and the invocation - that means it's always clear when you're passing something by reference.
+
+•	Where in memory are value types allocated? Where are reference types allocated?
+
+Reference types always goes to the Heap, whereas Value Types always go where they were declared.
+If a Value Type is declared outside of a method, but inside a Reference Type 
+it will be placed within the Reference Type on the Heap.
+
+•	What is data mutation? Can value types be mutated? Can reference types be mutated?
+
+Data mutation is changing of value of reference variable as we pass other reference variable pointing to
+the same place in heap. 
+Only reference types can be mutated.
+
+•	What is the difference between mutating and setting (assigning) a variable? Give examples.
+
+public static Main
+{
+	Mutation
+	RefClass obj = new RefClass();
+	obj.Value = 20; - setting (assigning)
+	Modify(obj)
+	Console.WriteLine(obj.Value)
+}
+
+public void Modify(RefClass obj)
+{
+	obj += 10; - mutating
+}
+
+•	What are the out and ref keywords used for? In what do they differ?
+
+The out keyword causes arguments to be passed by reference. This is like the ref keyword,
+except that ref requires that the variable be initialized before it is passed. To use an 
+out parameter, both the method definition and the calling method must explicitly use the out keyword.
+The ref keyword causes an argument to be passed by reference, not by value. The effect of 
+passing by reference is that any change to the parameter in the called method is reflected 
+in the calling method. For example, if the caller passes a local variable expression or an 
+array element access expression, and the called method replaces the object to which the ref 
+parameter refers, then the caller’s local variable or the array element now refer to the new object.
+
